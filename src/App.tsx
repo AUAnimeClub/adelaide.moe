@@ -3,6 +3,23 @@ import './App.css';
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faDiscord} from "@fortawesome/free-brands-svg-icons";
+import Particles from "react-tsparticles";
+
+const bgcolor = 'rgba(40, 44, 52, 0.8)';
+
+const MainHeader = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+
+  background: linear-gradient(0deg, ${bgcolor}, ${bgcolor}),
+  url('./images/background-3.jpg') no-repeat center center fixed;
+  background-size: cover;
+`;
 
 const LogoImage = styled.img`
   max-width: 200px;
@@ -27,12 +44,53 @@ const LinkButton = styled.a`
   }
 `;
 
+function PetalParticles() {
+  return <Particles style={{
+    position: "absolute",
+    width: '100%',
+    height: '100%',
+  }} options={{
+    particles: {
+      number: {
+        value: 20,
+      },
+      color: {
+        value: "#fff",
+      },
+      move: {
+        bounce: false,
+        direction: 'bottom',
+        enable: true,
+        random: false,
+        straight: false,
+        speed: 1,
+      },
+      shape: {
+        type: "image",
+        image: [
+          { src: '/particles/petal-1.png' },
+          { src: '/particles/petal-2.png' },
+        ]
+      },
+      rotate: {
+        random: true,
+        value: 100,
+      },
+      size: {
+        random: { enable: true, minimumValue: 5 },
+        value: 10,
+      },
+    },
+  }}/>
+}
+
 function App() {
   return (
     <div className="App">
-      <div className="App-header">
+      <MainHeader style={{color: '#F0E6E7'}}>
+        <PetalParticles />
         <LogoImage src="/logo512.png"/>
-        Adelaide University Anime Club - Website still under construction
+        Anime Club Putting the "We" in "Weeaboo"
         <Buttons>
           <LinkButton
             style={{ backgroundColor: '#FEBCF1', color: '#2A2B3C' }}
@@ -43,7 +101,7 @@ function App() {
             <FontAwesomeIcon icon={faDiscord} /> Join Discord
           </LinkButton>
         </Buttons>
-      </div>
+      </MainHeader>
     </div>
   );
 }
